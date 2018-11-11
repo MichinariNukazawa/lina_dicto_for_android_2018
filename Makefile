@@ -35,8 +35,8 @@ copy:
 	cd $(LINA_DICTO_ASSETS_DIR)/ && mv js/index.js .
 	cd $(LINA_DICTO_ASSETS_DIR)/ && node ./node_modules/browserify/bin/cmd.js index.js -o bundle.js
 	cd $(LINA_DICTO_ASSETS_DIR)/ && sed -i 's:src="./js/index.js">:src="./bundle.js">:' index.html
-	# ** ここ大変だから手動で書き換えて
-	#sed -i 's@dicPath:.*\\$$@dicPath: "node_modules/kuromoji/dict"@' $(LINA_DICTO_ASSETS_DIR)/bundle.js
+	# ** kuromojiパス書き換え
+	sed -i 's@dicPath:.*$$@dicPath: "node_modules/kuromoji/dict"@' $(LINA_DICTO_ASSETS_DIR)/bundle.js
 	# ** kuromoji 辞書ファイル以外のnode_modules以下ファイルを除去
 	cp -r $(LINA_DICTO_ASSETS_DIR)/node_modules/kuromoji/dict .
 	rm -rf $(LINA_DICTO_ASSETS_DIR)/node_modules/
