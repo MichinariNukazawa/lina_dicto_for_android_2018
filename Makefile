@@ -8,10 +8,17 @@ all: copy
 LINA_DICTO_ASSETS_DIR=app/src/main/assets/lina_dicto
 
 copy:
+	make copy-lina_dicto
+	make copy-overwrite
+	make copy-browserify
+
+copy-lina_dicto:
 	# get lina_dicto project
 	rm -rf $(LINA_DICTO_ASSETS_DIR)
 	mkdir -p $(LINA_DICTO_ASSETS_DIR)
 	cp -r ../lina_dicto/lina_dicto/* $(LINA_DICTO_ASSETS_DIR)/
+
+copy-overwrite:
 	# electron固有コードの無力化
 	echo "'use strict';" > $(LINA_DICTO_ASSETS_DIR)/js/menu.js
 	echo "'use strict';" > $(LINA_DICTO_ASSETS_DIR)/js/file_loader.js
@@ -31,8 +38,10 @@ copy:
 	rm -rf $(LINA_DICTO_ASSETS_DIR)/release
 	rm -rf $(LINA_DICTO_ASSETS_DIR)/work
 	rm -rf $(LINA_DICTO_ASSETS_DIR)/test
+
+copy-browserify:
 	# ** browserify
-	cd $(LINA_DICTO_ASSETS_DIR)/ && mv js/index.js .
+	cd $(LINA_DICTO_ASSETS_DIR)/ && cp js/index.js .
 	cd $(LINA_DICTO_ASSETS_DIR)/ && node ./node_modules/browserify/bin/cmd.js index.js -o bundle.js
 	cd $(LINA_DICTO_ASSETS_DIR)/ && sed -i 's:src="./js/index.js">:src="./bundle.js">:' index.html
 	# ** kuromojiパス書き換え
