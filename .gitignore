@@ -4,7 +4,10 @@ work/
 gabage/
 tmp/
 app/src/main/assets/lina_dicto/
+
+# lina_dicto android key file
 /key
+keystore.properties
 
 # android studio origin
 
