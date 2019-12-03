@@ -33,6 +33,7 @@ copy:
 	rm -rf $(LINA_DICTO_ASSETS_DIR)/test
 	# ** browserify
 	cd $(LINA_DICTO_ASSETS_DIR)/ && mv js/index.js .
+	cd $(LINA_DICTO_ASSETS_DIR)/ && npm install browserify
 	cd $(LINA_DICTO_ASSETS_DIR)/ && node ./node_modules/browserify/bin/cmd.js index.js -o bundle.js
 	cd $(LINA_DICTO_ASSETS_DIR)/ && sed -i ".back" 's:src="./js/index.js">:src="./bundle.js">:' index.html
 	cd $(LINA_DICTO_ASSETS_DIR)/ && rm -rf index.html.back
