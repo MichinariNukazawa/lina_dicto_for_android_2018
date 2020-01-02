@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        WebView webView = (WebView)findViewById(R.id.webView1);
+        WebView webView = (WebView) findViewById(R.id.webView1);
         if (savedInstanceState == null) {
             webView.setBackgroundColor(Color.TRANSPARENT);
             webView.loadUrl("file:///android_asset/lina_dicto/index.html");
