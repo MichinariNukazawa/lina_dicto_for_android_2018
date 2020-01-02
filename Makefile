@@ -38,7 +38,7 @@ copy:
 	cd $(LINA_DICTO_ASSETS_DIR)/ && sed -i ".back" 's:src="./js/index.js">:src="./bundle.js">:' index.html
 	cd $(LINA_DICTO_ASSETS_DIR)/ && rm -rf index.html.back
 	# ** kuromojiパス書き換え
-	sed -i ".back" 's@dicPath:.*$$@dicPath: "node_modules/kuromoji/dict"@' $(LINA_DICTO_ASSETS_DIR)/bundle.js
+	sed -i.back 's@dicPath:.*$$@dicPath: "node_modules/kuromoji/dict"@' $(LINA_DICTO_ASSETS_DIR)/bundle.js
 	rm $(LINA_DICTO_ASSETS_DIR)/bundle.js.back
 	# ** kuromoji 辞書ファイル以外のnode_modules以下ファイルを除去
 	cp -r $(LINA_DICTO_ASSETS_DIR)/node_modules/kuromoji/dict .
@@ -46,7 +46,7 @@ copy:
 	mkdir -p $(LINA_DICTO_ASSETS_DIR)/node_modules/kuromoji
 	mv dict/ $(LINA_DICTO_ASSETS_DIR)/node_modules/kuromoji
 	# ** kuromoji 辞書ファイルをリネーム Androidのassetから.gzが取り除かれる問題を回避
-	sed -i ".back" 's/\.dat\.gz/.dat.bin/g' $(LINA_DICTO_ASSETS_DIR)/bundle.js
+	sed -i.back 's/\.dat\.gz/.dat.bin/g' $(LINA_DICTO_ASSETS_DIR)/bundle.js
 	rm $(LINA_DICTO_ASSETS_DIR)/bundle.js.back
 	cd $(LINA_DICTO_ASSETS_DIR)/node_modules/kuromoji/dict/ && rename 's/\.gz/.bin/' *
 
