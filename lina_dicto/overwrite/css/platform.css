@@ -1,5 +1,9 @@
 @charset "utf-8";
 
+#timeline{
+	margin-left:2px;
+}
+
 #query-area__query-input__input{
 	/* 入力欄Element(<input>) */
 	max-width: 80%
