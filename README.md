@@ -12,7 +12,7 @@ lina\_dicto for android (2018)
 # Get lina\_dicto for android
 [Google Play Storeにて公開中]( https://play.google.com/store/apps/details?id=com.michinari_nukazawa.app.lina_dicto_for_android )。  
 Google Play Store install QR code.  
-<img alt="lina_dicto google play store url qrcode" src="lina_dicto/document/image/lina_dicto_for_android_googleplay_url.png" width="400">  
+<img alt="lina_dicto google play store url qrcode" src="lina_dicto/document/image/lina_dicto_for_android_googleplay_url.svg" width="300">  
 
 ## Build
 get this project repository.
