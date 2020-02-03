@@ -24,7 +24,7 @@ android {
         applicationId 'com.michinari_nukazawa.app.lina_dicto_for_android'
         minSdkVersion 23
         targetSdkVersion 29
-        versionCode 11
+        versionCode 12
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
