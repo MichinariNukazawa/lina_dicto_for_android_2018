@@ -19,11 +19,11 @@ android {
             storePassword keystoreProperties['storePassword']
         }
     }
-    compileSdkVersion 28
+    compileSdkVersion 29
     defaultConfig {
         applicationId 'com.michinari_nukazawa.app.lina_dicto_for_android'
         minSdkVersion 23
-        targetSdkVersion 28
+        targetSdkVersion 29
         versionCode 5
         versionName "1.0"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
