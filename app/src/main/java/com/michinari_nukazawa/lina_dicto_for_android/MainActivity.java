@@ -4,26 +4,30 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.webkit.WebResourceRequest;
-import android.webkit.WebResourceResponse;
+import android.util.Log;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-
+import android.webkit.WebResourceRequest;
+import android.webkit.WebResourceResponse;
 import androidx.webkit.WebViewAssetLoader;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final String TAG = "LinadMainAct";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
-        WebView webView = (WebView)findViewById(R.id.webView1);
         if (savedInstanceState == null) {
-            webView.setBackgroundColor(Color.TRANSPARENT);
+            Log.d(TAG, "onCreate init");
 
+            setContentView(R.layout.activity_main);
+            WebView webView = (WebView) findViewById(R.id.webView1);
+
+            webView.setBackgroundColor(Color.TRANSPARENT);
             WebSettings webSettings = webView.getSettings();
             webSettings.setJavaScriptEnabled(true);
 
@@ -45,18 +49,21 @@ public class MainActivity extends AppCompatActivity {
             });
 
             webView.loadUrl("https://appassets.androidplatform.net/assets/lina_dicto/index.html");
-        }else{
-            webView.restoreState(savedInstanceState);
-        }
 
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            webView.setWebContentsDebuggingEnabled(true);
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                webView.setWebContentsDebuggingEnabled(true);
+            }
+        }else{
+            WebView webView = (WebView) findViewById(R.id.webView1);
+            webView.restoreState(savedInstanceState);
         }
     }
 
     @Override
     protected void onSaveInstanceState(Bundle outState )
     {
+        Log.d(TAG, "onSaveInstanceState");
+
         super.onSaveInstanceState(outState);
         WebView webView = (WebView)findViewById(R.id.webView1);
         webView.saveState(outState);
@@ -65,6 +72,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState)
     {
+        Log.d(TAG, "onRestoreInstanceState");
+
         super.onRestoreInstanceState(savedInstanceState);
         WebView webView = (WebView)findViewById(R.id.webView1);
         webView.restoreState(savedInstanceState);
