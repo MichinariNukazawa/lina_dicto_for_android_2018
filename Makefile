@@ -12,11 +12,22 @@ copy:
 	make copy-overwrite
 	make copy-browserify
 
+copy-english:
+	make copy-lina_dicto_english
+	make copy-overwrite
+	make copy-browserify
+
 copy-lina_dicto:
 	# get lina_dicto project
 	rm -rf $(LINA_DICTO_ASSETS_DIR)
 	mkdir -p $(LINA_DICTO_ASSETS_DIR)
 	cp -r ../lina_dicto/lina_dicto/* $(LINA_DICTO_ASSETS_DIR)/
+
+copy-lina_dicto_english:
+	# get lina_dicto_english project
+	rm -rf $(LINA_DICTO_ASSETS_DIR)
+	mkdir -p $(LINA_DICTO_ASSETS_DIR)
+	cp -r ../lina_dicto_english/lina_dicto/lina_dicto/* $(LINA_DICTO_ASSETS_DIR)/
 
 copy-overwrite:
 	# electron固有コードの無力化

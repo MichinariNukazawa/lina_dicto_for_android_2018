@@ -21,7 +21,7 @@ android {
     }
     compileSdkVersion 30
     defaultConfig {
-        applicationId 'com.michinari_nukazawa.app.lina_dicto_for_android'
+        applicationId 'com.michinari_nukazawa.app.lina_dicto_english_for_android'
         minSdkVersion 23
         targetSdkVersion 30
         versionCode 15

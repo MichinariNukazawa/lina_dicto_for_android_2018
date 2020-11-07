@@ -26,6 +26,8 @@ while read line; do
 		FPATH="${LINA_DICTO_ASSETS_DIR}/${FPATH}"
 		# ** browserifyで連結する際に"`"があると壊れるので対処
 		sed -i 's/`/\\\`/g' ${FPATH}
+		# 読み込み時に'"'のエスケープが効かないので対処
+		sed -i 's/\\\"/”/g' ${FPATH}
 		#sed -i 's/\`/\\\`/g' ${FPATH} # for macosx
 		CONTENT=$(cat ${FPATH})
 		echo "${VALNAME} = \`${CONTENT}\`;" >> ${TMP_LOADER_PATH}
