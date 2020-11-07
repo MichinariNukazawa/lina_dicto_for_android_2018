@@ -24,8 +24,9 @@ while read line; do
 		VALNAME=${BASH_REMATCH[1]}
 		FPATH=${BASH_REMATCH[2]}
 		FPATH="${LINA_DICTO_ASSETS_DIR}/${FPATH}"
-		sed -i ".back" 's/\`/\\\`/g' ${FPATH}
-		rm "${FPATH}.back"
+		# ** browserifyで連結する際に"`"があると壊れるので対処
+		sed -i 's/`/\\\`/g' ${FPATH}
+		#sed -i 's/\`/\\\`/g' ${FPATH} # for macosx
 		CONTENT=$(cat ${FPATH})
 		echo "${VALNAME} = \`${CONTENT}\`;" >> ${TMP_LOADER_PATH}
 	else
