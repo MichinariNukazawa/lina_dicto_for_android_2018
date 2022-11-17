@@ -14,6 +14,7 @@ copy:
 
 copy-lina_dicto:
 	# get lina_dicto project
+	# depend old commit version.
 	rm -rf $(LINA_DICTO_ASSETS_DIR)
 	mkdir -p $(LINA_DICTO_ASSETS_DIR)
 	cp -r ../lina_dicto/lina_dicto/* $(LINA_DICTO_ASSETS_DIR)/
@@ -42,21 +43,24 @@ copy-overwrite:
 copy-browserify:
 	# ** browserify
 	cd $(LINA_DICTO_ASSETS_DIR)/ && mv js/index.js .
-	cd $(LINA_DICTO_ASSETS_DIR)/ && npm install browserify
+	cd $(LINA_DICTO_ASSETS_DIR)/ && npm install browserify write-int kuromoji
 	cd $(LINA_DICTO_ASSETS_DIR)/ && node ./node_modules/browserify/bin/cmd.js index.js -o bundle.js
-	cd $(LINA_DICTO_ASSETS_DIR)/ && sed -i ".back" 's:src="./js/index.js">:src="./bundle.js">:' index.html
-	cd $(LINA_DICTO_ASSETS_DIR)/ && rm -rf index.html.back
+	cd $(LINA_DICTO_ASSETS_DIR)/ && sed -i 's:src="./js/index.js">:src="./bundle.js">:' index.html
+	#cd $(LINA_DICTO_ASSETS_DIR)/ && sed -i ".back" 's:src="./js/index.js">:src="./bundle.js">:' index.html
+	#cd $(LINA_DICTO_ASSETS_DIR)/ && rm -rf index.html.back
 	# ** kuromojiパス書き換え
-	sed -i.back 's@dicPath:.*$$@dicPath: "node_modules/kuromoji/dict"@' $(LINA_DICTO_ASSETS_DIR)/bundle.js
-	rm $(LINA_DICTO_ASSETS_DIR)/bundle.js.back
+	sed -i 's@dicPath:.*$$@dicPath: "node_modules/kuromoji/dict"@' $(LINA_DICTO_ASSETS_DIR)/bundle.js
+	#sed -i.back 's@dicPath:.*$$@dicPath: "node_modules/kuromoji/dict"@' $(LINA_DICTO_ASSETS_DIR)/bundle.js
+	#rm $(LINA_DICTO_ASSETS_DIR)/bundle.js.back
 	# ** kuromoji 辞書ファイル以外のnode_modules以下ファイルを除去
 	cp -r $(LINA_DICTO_ASSETS_DIR)/node_modules/kuromoji/dict .
 	rm -rf $(LINA_DICTO_ASSETS_DIR)/node_modules/
 	mkdir -p $(LINA_DICTO_ASSETS_DIR)/node_modules/kuromoji
 	mv dict/ $(LINA_DICTO_ASSETS_DIR)/node_modules/kuromoji
 	# ** kuromoji 辞書ファイルをリネーム Androidのassetから.gzが取り除かれる問題を回避
-	sed -i.back 's/\.dat\.gz/.dat.bin/g' $(LINA_DICTO_ASSETS_DIR)/bundle.js
-	rm $(LINA_DICTO_ASSETS_DIR)/bundle.js.back
+	sed -i 's/\.dat\.gz/.dat.bin/g' $(LINA_DICTO_ASSETS_DIR)/bundle.js
+	#sed -i.back 's/\.dat\.gz/.dat.bin/g' $(LINA_DICTO_ASSETS_DIR)/bundle.js
+	#rm $(LINA_DICTO_ASSETS_DIR)/bundle.js.back
 	cd $(LINA_DICTO_ASSETS_DIR)/node_modules/kuromoji/dict/ && rename 's/\.gz/.bin/' *
 
 clean:
